@@ -1,5 +1,5 @@
 {
-    "TableName": "MusicCollection2",
+    "TableName": "MusicCollection",
     "KeySchema": [
       { "AttributeName": "Artist", "KeyType": "HASH" },
       { "AttributeName": "SongTitle", "KeyType": "RANGE" }

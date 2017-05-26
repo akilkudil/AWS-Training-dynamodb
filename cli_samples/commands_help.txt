@@ -1,0 +1,59 @@
+
+1. Start dynamodb local
+
+java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+
+
+2. Generate expected json format for different actions
+
+aws dynamodb create-table --generate-cli-skeleton
+
+3. List tables
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+
+4. Create tables
+
+aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/createMusicTable.json" --endpoint-url http://localhost:8000
+
+5. put item
+
+aws dynamodb put-item --table-name MusicCollection --item file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/firstData.json" --endpoint-url http://localhost:8000
+
+6. get item 
+
+aws dynamodb get-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/firstGet.json" --endpoint-url http://localhost:8000
+
+7. update item (need checking)
+
+aws dynamodb update-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/firstGet.json" --update-expression 'SET Yearval = "1987"' --endpoint-url http://localhost:8000
+
+8. delete item
+
+aws dynamodb delete-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/secondGet.json" --endpoint-url http://localhost:8000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
