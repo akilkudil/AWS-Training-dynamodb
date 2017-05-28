@@ -32,6 +32,10 @@ aws dynamodb batch-write-item --request-items file://"C:/SPB_Data/AWS-Training-d
 
 
 
+RERIEVING DATA
+
+1. Query item using secondary index
+aws dynamodb query --table-name Reply --index-name PostedBy-Message-Index  --key-condition-expression "Id = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/sampledata/indexExprValue.json --endpoint-url http://localhost:8000
 
 
 
