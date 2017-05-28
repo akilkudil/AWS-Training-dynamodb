@@ -12,7 +12,7 @@ aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dyna
 
 3. Create Reply Table with global index
 
-aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createReply.json" --global-secondary-index file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createPostedByMessageIndex.json" --endpoint-url http://localhost:8000
+aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createReply.json" --endpoint-url http://localhost:8000
 
 
 LOADING DATA
@@ -34,9 +34,11 @@ aws dynamodb batch-write-item --request-items file://"C:/SPB_Data/AWS-Training-d
 
 RERIEVING DATA
 
-1. Query item using secondary index
-aws dynamodb query --table-name Reply --index-name PostedBy-Message-Index  --key-condition-expression "Id = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/sampledata/indexExprValue.json --endpoint-url http://localhost:8000
+1. Query item using secondary index with partition key
+aws dynamodb query --table-name Reply --index-name PostedBy-Message-Index  --key-condition-expression "PostedBy = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/sampledata/indexExprValue.json --endpoint-url http://localhost:8000
 
+2. Query item using secondary index with both partition and sort key
+aws dynamodb query --table-name Reply --index-name PostedBy-Message-Index  --key-condition-expression "PostedBy = :a AND Message= :b" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/sampledata/indexExprValue2.json --endpoint-url http://localhost:8000
 
 
 

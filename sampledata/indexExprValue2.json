@@ -1,0 +1,4 @@
+{
+    ":a": {"S": "User A"},
+    ":b": {"S": "DynamoDB Thread 1 Reply 1 text"}
+}

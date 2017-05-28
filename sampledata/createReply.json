@@ -6,13 +6,15 @@
     ],
     "AttributeDefinitions": [
       { "AttributeName": "Id", "AttributeType": "S" },
-      { "AttributeName": "ReplyDateTime", "AttributeType": "S" }
+      { "AttributeName": "ReplyDateTime", "AttributeType": "S" },
+      { "AttributeName": "PostedBy", "AttributeType": "S" },
+      { "AttributeName": "Message", "AttributeType": "S" }
     ],
     "GlobalSecondaryIndexes" : [{
              "IndexName":"PostedBy-Message-Index",
              "KeySchema": [
-                { "AttributeName": "Id", "KeyType": "HASH" },
-                { "AttributeName": "ReplyDateTime", "KeyType": "RANGE" }
+                { "AttributeName": "PostedBy", "KeyType": "HASH" },
+                { "AttributeName": "Message", "KeyType": "RANGE" }
               ],
 
              "Projection": {
