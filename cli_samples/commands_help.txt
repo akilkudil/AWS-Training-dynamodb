@@ -44,8 +44,26 @@ aws dynamodb --region=eu-west-1 create-table --endpoint-url http://localhost:800
 --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10
  --global-secondary-indexes IndexName=Index,KeySchema=["{AttributeName=assignedTo,KeyType=HASH}","{AttributeName=roles,KeyType=RANGE}"],Projection="{ProjectionType=INCLUDE ,NonKeyAttributes=["key"]}",ProvisionedThroughput="{ReadCapacityUnits=10,WriteCapacityUnits=10}"
 
-10. 
+11. scan
+ aws dynamodb scan --table-name MusicCollection --endpoint-url http://localhost:8000
 
+12. scan with item limit
+aws dynamodb scan --table-name MusicCollection --max-items 1 --endpoint-url http://localhost:8000
+
+13. scan with filter (used --expression-attribute-values)
+
+aws dynamodb scan --table-name MusicCollection --filter-expression "Artist = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/cli_samples/exprValue.json --endpoint-url http://localhost:8000
+
+
+14. query (will always have --key-condition-expression)
+
+aws dynamodb query --table-name MusicCollection  --key-condition-expression "Artist = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/cli_samples/exprValue.json --endpoint-url http://localhost:8000
+
+15. wait till table exists
+ aws dynamodb wait table-exists --table-name MusicCollection --endpoint-url http://localhost:8000
+
+16. wait till table does not exist
+ aws dynamodb wait table-not-exists --table-name MusicCollection --endpoint-url http://localhost:8000
 
 
 
