@@ -8,14 +8,14 @@ $client = new DynamoDbClient([
     'version' => 'latest',
     'endpoint' => 'http://localhost:8000'
 ]);
-$result = $client->describeTable(array(
-    'TableName' => 'MusicCollection'
+
+$result = $client->getItem(array(
+    'TableName' => 'MusicCollection',
+    'Key'       => array(
+        'Artist'   => array('S' => 'SPB'),
+        'SongTitle' => array('S' => 'Pon malai pozhuthu')
+    )
 ));
 
-// The result of an operation can be used like an array
-
-
-var_dump($result['Table']['AttributeDefinitions']);
-
-
+var_dump($result["Item"]);
 ?>
