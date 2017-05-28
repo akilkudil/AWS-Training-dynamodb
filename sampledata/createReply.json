@@ -1,0 +1,33 @@
+{
+    "TableName": "Reply",
+    "KeySchema": [
+      { "AttributeName": "Id", "KeyType": "HASH" },
+      { "AttributeName": "ReplyDateTime", "KeyType": "RANGE" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "Id", "AttributeType": "S" },
+      { "AttributeName": "ReplyDateTime", "AttributeType": "S" }
+    ],
+    "GlobalSecondaryIndexes" : [{
+             "IndexName":"PostedBy-Message-Index",
+             "KeySchema": [
+                { "AttributeName": "Id", "KeyType": "HASH" },
+                { "AttributeName": "ReplyDateTime", "KeyType": "RANGE" }
+              ],
+
+             "Projection": {
+                "ProjectionType": "ALL"
+              },
+
+            "ProvisionedThroughput": {
+               "ReadCapacityUnits": 5,
+               "WriteCapacityUnits": 5
+             }
+     }],
+
+
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    }
+}

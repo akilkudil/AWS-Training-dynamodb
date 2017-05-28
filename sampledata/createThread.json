@@ -1,0 +1,15 @@
+{
+    "TableName": "Thread",
+    "KeySchema": [
+      { "AttributeName": "ForumName", "KeyType": "HASH" },
+      { "AttributeName": "Subject", "KeyType": "RANGE" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "ForumName", "AttributeType": "S" },
+      { "AttributeName": "Subject", "AttributeType": "S" }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    }
+}

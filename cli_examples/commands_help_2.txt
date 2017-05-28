@@ -1,0 +1,50 @@
+Discussion board App
+
+TABLE CREATION
+
+1. Create Forum Table (Partition Key is Name:String )
+
+aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createForum.json" --endpoint-url http://localhost:8000
+
+2. Create Thread Table (Partition Key is ForumName:String, Sort Key is Subject:String)
+
+aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createThread.json" --endpoint-url http://localhost:8000
+
+3. Create Reply Table with global index
+
+aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createReply.json" --global-secondary-index file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createPostedByMessageIndex.json" --endpoint-url http://localhost:8000
+
+
+LOADING DATA
+
+1. Load Data into Forum
+
+aws dynamodb batch-write-item --request-items file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/Forum.json" --endpoint-url http://localhost:8000
+
+
+2. Load Data into Thread
+
+aws dynamodb batch-write-item --request-items file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/Thread.json" --endpoint-url http://localhost:8000
+
+3. Load Data into Reply
+
+aws dynamodb batch-write-item --request-items file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/Reply.json" --endpoint-url http://localhost:8000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

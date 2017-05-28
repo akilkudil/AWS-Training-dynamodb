@@ -13,24 +13,24 @@ aws dynamodb list-tables --endpoint-url http://localhost:8000
 
 4. Create tables
 
-aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/createMusicTable.json" --endpoint-url http://localhost:8000
+aws dynamodb create-table --cli-input-json file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/createMusicTable.json" --endpoint-url http://localhost:8000
 
 5. put item
 
-aws dynamodb put-item --table-name MusicCollection --item file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/firstData.json" --endpoint-url http://localhost:8000
+aws dynamodb put-item --table-name MusicCollection --item file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/firstData.json" --endpoint-url http://localhost:8000
 
 6. get item 
 
-aws dynamodb get-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/firstGet.json" --endpoint-url http://localhost:8000
+aws dynamodb get-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/firstGet.json" --endpoint-url http://localhost:8000
 
 7. update item (need checking)
 
-aws dynamodb update-item --table-name Music --key file://"D:/dynamodb/cli_samples/firstGet.json" --update-expression "SET :year = :y" --expression-attribute-values file://"D:/dynamodb/cli_samples/updateValues.json"   --expression-attribute-names '{":year":"Yearval"}'
-aws dynamodb update-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/firstGet.json" --update-expression 'SET Yearval = "1987"' --endpoint-url http://localhost:8000
+aws dynamodb update-item --table-name Music --key file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/firstGet.json" --update-expression "SET :year = :y" --expression-attribute-values file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/updateValues.json"   --expression-attribute-names '{":year":"Yearval"}'
+aws dynamodb update-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/firstGet.json" --update-expression 'SET Yearval = "1987"' --endpoint-url http://localhost:8000
 
 8. delete item
 
-aws dynamodb delete-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/cli_samples/secondGet.json" --endpoint-url http://localhost:8000
+aws dynamodb delete-item --table-name MusicCollection --key file://"C:/SPB_Data/AWS-Training-dynamodb/sampledata/secondGet.json" --endpoint-url http://localhost:8000
 
 9. delete table
 
@@ -52,12 +52,12 @@ aws dynamodb scan --table-name MusicCollection --max-items 1 --endpoint-url http
 
 13. scan with filter (used --expression-attribute-values)
 
-aws dynamodb scan --table-name MusicCollection --filter-expression "Artist = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/cli_samples/exprValue.json --endpoint-url http://localhost:8000
+aws dynamodb scan --table-name MusicCollection --filter-expression "Artist = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/sampledata/exprValue.json --endpoint-url http://localhost:8000
 
 
 14. query (will always have --key-condition-expression)
 
-aws dynamodb query --table-name MusicCollection  --key-condition-expression "Artist = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/cli_samples/exprValue.json --endpoint-url http://localhost:8000
+aws dynamodb query --table-name MusicCollection  --key-condition-expression "Artist = :a" --expression-attribute-values file://C:/SPB_Data/AWS-Training-dynamodb/sampledata/exprValue.json --endpoint-url http://localhost:8000
 
 15. wait till table exists
  aws dynamodb wait table-exists --table-name MusicCollection --endpoint-url http://localhost:8000
@@ -69,6 +69,10 @@ aws dynamodb query --table-name MusicCollection  --key-condition-expression "Art
 17. batch-write-item
 
 aws dynamodb batch-write-item --request-items file://ProductCatalog.json
+
+
+
+
 
 
 
